@@ -154,7 +154,6 @@
     <Compile Include="Assets\Scripts\MainMenu\LoadSingleplayer.cs" />
     <Compile Include="Assets\Scripts\MainMenu\QuitOnClick.cs" />
     <Compile Include="Assets\Scripts\Pawn.cs" />
-    <Compile Include="Assets\Scripts\PongZManager.cs" />
     <Compile Include="Assets\Scripts\ScoreManager.cs" />
   </ItemGroup>
   <ItemGroup>

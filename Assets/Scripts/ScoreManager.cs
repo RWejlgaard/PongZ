@@ -20,13 +20,10 @@ public class ScoreManager : MonoBehaviour {
         RightScore++;
     }
 
-    public void UpdateScore()
-    {
-        transform.GetComponent<Text>().text = LeftScore + "  " + RightScore;
-    }
-
     // Update is called once per frame
 	void Update () {
         transform.GetComponent<Text>().text = LeftScore + "  " + RightScore;
-    }
+	    if (LeftScore == 10 || RightScore == 10) {
+	    }
+	}
 }

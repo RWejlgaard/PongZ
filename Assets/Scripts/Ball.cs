@@ -61,6 +61,11 @@ public class Ball : MonoBehaviour {
                 GetComponent<Rigidbody2D>().velocity = dir*(Speed + _timeElapsed*SpeedUpRate);
             }
                 break;
+			case "Brick": {
+				Destroy(col.gameObject);
+
+			}
+			break;
         }
     }
 }
