@@ -3,6 +3,8 @@ using System.Collections;
 
 public class AI : MonoBehaviour {
 
+	public float maxSpeed = 0.2f;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -12,10 +14,10 @@ public class AI : MonoBehaviour {
 	void Update ()
 	{
 	    var posY = GameObject.FindGameObjectsWithTag("Ball")[0].transform.position.y;
-        var pos = new Vector3(8, posY);
-        if (pos.y < 3.5 && pos.y > -3.5)
-        {
-            transform.position = pos;
-        }
+		var pos = new Vector3 (8, posY);
+		//if (transform.position.y < 3.5 && transform.position.y > -3.5)
+        //{
+			transform.position = Vector3.Lerp(transform.position,pos, maxSpeed);
+        //}
     }
 }

@@ -21,69 +21,46 @@ public class Ball : MonoBehaviour {
 
     }
 
-    public void RestartPosition() {
+    private void RestartPosition() {
         var initalVelocity = Random.value;
         transform.position = new Vector3(0, 0, 0);
         _timeElapsed = 0;
         GetComponent<Rigidbody2D>().velocity = initalVelocity >= 0.5f ? Vector2.right * Speed : Vector2.left * Speed;
     }
 
-    private float HitFactor(Vector2 ballPos, Vector2 racketPos, float racketHeight) {
-		return (ballPos.y - racketPos.y) / racketHeight;
+    private float BallBounce(Vector2 ballPos, Vector2 paddlePos, float paddleHeight) {
+		return (ballPos.y - paddlePos.y) / paddleHeight;
 	}
 
     private void Update() {
         _timeElapsed += Time.deltaTime;
+
+		if (transform.position.x < -10f) {
+			_scoreManager.RightScored ();
+			RestartPosition ();
+		} else if (transform.position.x > 10f) {
+			_scoreManager.LeftScored();
+			RestartPosition();
+		}
     }
 
     // ReSharper disable once UnusedMember.Local
     private void OnCollisionEnter2D(Collision2D col) {
         switch (col.gameObject.name) {
-            case "PaddleLeft":
-                {
-                    var y = HitFactor(transform.position, col.transform.position, col.collider.bounds.size.y);
-                    var dir = new Vector2(1, y).normalized;
-
-                    GetComponent<Rigidbody2D>().velocity = dir * (Speed + _timeElapsed * SpeedUpRate);
-                }
-                break;
-
-            case "PaddleLeft(Clone)": {
-                var y = HitFactor(transform.position, col.transform.position, col.collider.bounds.size.y);
+            case "PaddleLeft": {
+                var y = BallBounce(transform.position, col.transform.position, col.collider.bounds.size.y);
                 var dir = new Vector2(1, y).normalized;
 
-                GetComponent<Rigidbody2D>().velocity = dir * (Speed + _timeElapsed * SpeedUpRate);
+                GetComponent<Rigidbody2D>().velocity = dir*(Speed + _timeElapsed*SpeedUpRate);
             }
-            break;
-
+                break;
             case "PaddleRight": {
-                var y = HitFactor(transform.position, col.transform.position, col.collider.bounds.size.y);
+                var y = BallBounce(transform.position, col.transform.position, col.collider.bounds.size.y);
                 var dir = new Vector2(-1, y).normalized;
 
-                GetComponent<Rigidbody2D>().velocity = dir*(Speed + _timeElapsed * SpeedUpRate);
+                GetComponent<Rigidbody2D>().velocity = dir*(Speed + _timeElapsed*SpeedUpRate);
             }
-            break;
-
-            case "PaddleRight(Clone)":
-                {
-                    var y = HitFactor(transform.position, col.transform.position, col.collider.bounds.size.y);
-                    var dir = new Vector2(-1, y).normalized;
-
-                    GetComponent<Rigidbody2D>().velocity = dir * (Speed + _timeElapsed * SpeedUpRate);
-                }
                 break;
-
-            case "LeftGoal": {
-                _scoreManager.RightScored();
-                RestartPosition();
-            }
-            break;
-
-            case "RightGoal": {
-                _scoreManager.LeftScored();
-                RestartPosition();
-            }
-            break;
         }
     }
 }
