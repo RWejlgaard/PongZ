@@ -61,6 +61,12 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    </Reference>
     <Reference Include="Photon3Unity3D">
       <HintPath>Assets\Plugins\Photon3Unity3D.dll</HintPath>
     </Reference>
@@ -76,7 +82,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Effects\CRTEffect.cs" />
-    <Compile Include="Assets\MultiplayerPawn.cs" />
     <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\CustomTypes.cs" />
     <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Enums.cs" />
     <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Extensions.cs" />
@@ -150,10 +155,14 @@
     <Compile Include="Assets\PhotonChatApi\IChatClientListener.cs" />
     <Compile Include="Assets\Scripts\AI.cs" />
     <Compile Include="Assets\Scripts\Ball.cs" />
+    <Compile Include="Assets\Scripts\KeyboardPlayer.cs" />
     <Compile Include="Assets\Scripts\MainMenu\LoadMultiplayer.cs" />
     <Compile Include="Assets\Scripts\MainMenu\LoadSingleplayer.cs" />
     <Compile Include="Assets\Scripts\MainMenu\QuitOnClick.cs" />
+    <Compile Include="Assets\Scripts\MultiplayerPawn.cs" />
     <Compile Include="Assets\Scripts\Pawn.cs" />
+    <Compile Include="Assets\Scripts\PowerupSpawner.cs" />
+    <Compile Include="Assets\Scripts\Powerups\Slowmo.cs" />
     <Compile Include="Assets\Scripts\ScoreManager.cs" />
   </ItemGroup>
   <ItemGroup>
