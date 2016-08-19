@@ -4,33 +4,34 @@ using System.Collections;
 public class Slowmo : MonoBehaviour {
 
     public float duration = 10;
+    private float countdown;
     private bool active = false;
 
 	// Use this for initialization
 	void Start () {
 	    duration = duration/2;
+        countdown = duration;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	    if (duration <= 0) {
+	    if (countdown <= 0) {
 	        Time.timeScale = 1;
-            Destroy(gameObject);
-	    }
+            transform.position = new Vector3(1000, 1000, 0);
+            countdown = duration;
+            active = false;
+        }
         else if (active) {
-	        duration -= Time.deltaTime;
+	        countdown -= Time.deltaTime;
 	    }
-        print(duration);
 	}
 
-	private void OnCollisionEnter2D(Collision2D col) {
+	private void OnTriggerEnter2D(Collider2D col) {
         if (col.gameObject.tag == "Ball") {
 			Time.timeScale = 0.5f;
             active = true;
         }
 
         transform.position = new Vector3(1000,1000,0);
-
-	
 	}
 }
