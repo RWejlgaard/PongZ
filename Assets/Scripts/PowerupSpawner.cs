@@ -25,11 +25,13 @@ public class PowerupSpawner : MonoBehaviour {
 	        XCoordinate = Random.Range(width * -1, width);
             YCoordinate = Random.Range(height * -1, height);
 
-            powerups[0].transform.position = new Vector3(XCoordinate, YCoordinate);
+            powerups[Random.Range(0,powerups.Length-1)].transform.position = new Vector3(XCoordinate, YCoordinate);
 	        powerupCountdown = PowerupInterval;
+	        
 	    }
 	    else {
 	        powerupCountdown -= Time.deltaTime;
+            
 	    }
 	}
 }

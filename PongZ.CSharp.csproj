@@ -157,7 +157,11 @@
     <Compile Include="Assets\Scripts\Pawn.cs" />
     <Compile Include="Assets\Scripts\PowerupSpawner.cs" />
     <Compile Include="Assets\Scripts\Powerups\Breakout.cs" />
+    <Compile Include="Assets\Scripts\Powerups\DrunkMode.cs" />
+    <Compile Include="Assets\Scripts\Powerups\ScaleDown.cs" />
+    <Compile Include="Assets\Scripts\Powerups\ScaleUp.cs" />
     <Compile Include="Assets\Scripts\Powerups\Slowmo.cs" />
+    <Compile Include="Assets\Scripts\Powerups\Speed.cs" />
     <Compile Include="Assets\Scripts\ScoreManager.cs" />
   </ItemGroup>
   <ItemGroup>

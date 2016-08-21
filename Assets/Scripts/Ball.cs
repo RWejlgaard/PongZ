@@ -9,11 +9,12 @@ public class Ball : MonoBehaviour {
     private GameObject _scoreGameObject;
     private Text _scoreText;
     private ScoreManager _scoreManager;
-    private string lastplayer;
+    public GameObject lastplayer;
 
 
     // ReSharper disable once UnusedMember.Local
     private void Start() {
+        lastplayer = GameObject.FindGameObjectsWithTag("Player")[0];
         RestartPosition();
         _scoreText = GameObject.FindGameObjectsWithTag("Score")[0].transform.GetComponent<Text>();
         _scoreManager = _scoreText.GetComponent<ScoreManager>();
@@ -24,7 +25,7 @@ public class Ball : MonoBehaviour {
         var initalVelocity = Random.value;
         transform.position = new Vector3(0, 0, 0);
         _timeElapsed = 0;
-        switch (lastplayer) {
+        switch (lastplayer.name) {
             case "PaddleLeft":
                 GetComponent<Rigidbody2D>().velocity = Vector2.right * Speed;
                 break;
@@ -61,7 +62,7 @@ public class Ball : MonoBehaviour {
             case "PaddleLeft": {
                 var y = BallBounce(transform.position, col.transform.position, col.collider.bounds.size.y);
                 var dir = new Vector2(1, y).normalized;
-                lastplayer = col.gameObject.name;
+                lastplayer = col.gameObject;
                 
                 GetComponent<Rigidbody2D>().velocity = dir*(Speed + _timeElapsed*SpeedUpRate);
             }
@@ -69,7 +70,7 @@ public class Ball : MonoBehaviour {
             case "PaddleRight": {
                 var y = BallBounce(transform.position, col.transform.position, col.collider.bounds.size.y);
                 var dir = new Vector2(-1, y).normalized;
-                lastplayer = col.gameObject.name;
+                lastplayer = col.gameObject;
 
                 GetComponent<Rigidbody2D>().velocity = dir*(Speed + _timeElapsed*SpeedUpRate);
             }
